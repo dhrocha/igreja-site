@@ -57,7 +57,7 @@ export function Pastor() {
     <section className="section section-alt" id="pastor">
       <div className="pastor-grid">
         <div>
-          <p className="kicker">04 — Cuidado pastoral</p>
+          <p className="kicker">06 — Cuidado pastoral</p>
           <h2>Fale com o pastor.</h2>
           <p className="lede">
             {pastor.displayName} acompanha a Casa de Paz. Se você precisa de

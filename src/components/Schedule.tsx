@@ -32,7 +32,7 @@ export function Schedule() {
     <section className="section" id="programacao">
       <div className="section-head">
         <p className="kicker">03 — Programação</p>
-        <h2>O ritmo da casa.</h2>
+        <h2>Venha ser casa</h2>
         <p>
           Ritmo habitual da igreja e do instituto. Eventos da semana, mudanças
           de horário e portas abertas saem primeiro nos perfis oficiais — use

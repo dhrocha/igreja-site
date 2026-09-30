@@ -1,4 +1,4 @@
-import { church, media, pastor, values } from "../content";
+import { media, pillars, quemSomos } from "../content";
 
 export function Church() {
   return (
@@ -17,69 +17,27 @@ export function Church() {
         <img src={media.church.src} alt={media.church.alt} />
       </figure>
 
-      <div className="value-grid">
-        {values.map((item) => (
+      <div className="value-grid value-grid-3">
+        {pillars.map((item) => (
           <article key={item.title} className="value-card">
+            <span className="pillar-number">{item.number}</span>
             <h3>{item.title}</h3>
-            <p>{item.text}</p>
           </article>
         ))}
       </div>
 
       <div className="split">
-        <div className="panel">
-          <p className="kicker">Quem somos</p>
-          <h3>Comunidade Cristã Casa de Paz</h3>
-          <p>
-            Igreja evangélica em Contagem, registrada como organização
-            religiosa. Pastoreada pelo {pastor.displayName}, a Casa de Paz
-            existe para amar a Deus, amar nossas famílias e servir o lugar onde
-            Deus nos plantou.
-          </p>
-          <ul className="facts">
-            <li>
-              <span>Razão social</span>
-              {church.legalName}
-            </li>
-            <li>
-              <span>Nome fantasia</span>
-              {church.tradeName}
-            </li>
-            <li>
-              <span>Liderança</span>
-              {pastor.displayName} · {pastor.role}
-            </li>
-            <li>
-              <span>Endereço</span>
-              {church.address.full}
-            </li>
-          </ul>
-          <a
-            className="text-link"
-            href={church.instagram.url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Seguir {church.instagram.handle}
-          </a>
+        <div className="panel quem-somos-panel">
+          <p className="kicker">{quemSomos.title}</p>
+          {quemSomos.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <p className="motto">{quemSomos.motto}</p>
         </div>
 
-        <div className="map-wrap">
-          <iframe
-            title="Mapa da Comunidade Cristã Casa de Paz"
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(church.mapsQuery)}&z=16&output=embed`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <a
-            className="map-link"
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(church.mapsQuery)}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Abrir no mapa
-          </a>
-        </div>
+        <figure className="split-photo">
+          <img src={media.quemSomos.src} alt={media.quemSomos.alt} />
+        </figure>
       </div>
     </section>
   );

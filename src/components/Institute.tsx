@@ -5,12 +5,8 @@ export function Institute() {
     <section className="section section-alt" id="instituto">
       <div className="section-head">
         <p className="kicker">02 — Instituto</p>
-        <h2>Fé que desce à rua.</h2>
-        <p>
-          O {institute.name} é o braço social da comunidade. Enquanto a igreja
-          reúne, o instituto permanece no território: acolhe, forma e cuida de
-          quem precisa de um chão concreto.
-        </p>
+        <h2>Somos a Igreja de Segunda</h2>
+        <p>4 pilares para transformar nossa comunidade</p>
       </div>
 
       <div className="front-grid">
@@ -18,7 +14,6 @@ export function Institute() {
           <article key={item.title} className="front-card">
             <span>{item.kicker}</span>
             <h3>{item.title}</h3>
-            <p>{item.text}</p>
           </article>
         ))}
       </div>
@@ -26,16 +21,15 @@ export function Institute() {
       <aside className="callout">
         <img
           className="callout-photo"
-          src={media.band.src}
-          alt={media.band.alt}
+          src={media.projeto.src}
+          alt={media.projeto.alt}
         />
         <div>
           <p className="kicker">Em movimento</p>
-          <h3>Acompanhe o instituto de perto</h3>
+          <h3>O projeto em ação</h3>
           <p>
-            Campanhas, mutirões e a rotina das frentes são publicadas em{" "}
-            {institute.instagram.handle}. A igreja e o instituto falam juntos —
-            cada um no seu ritmo.
+            Em breve, fotos e histórias das frentes do instituto. Acompanhe
+            também em {institute.instagram.handle}.
           </p>
         </div>
         <div className="callout-actions">

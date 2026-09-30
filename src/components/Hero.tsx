@@ -50,13 +50,6 @@ export function Hero() {
             <span>Celebração da casa</span>
           </dd>
         </div>
-        <div>
-          <dt>Acompanhe</dt>
-          <dd>
-            {church.instagram.handle}
-            <span>Igreja e instituto</span>
-          </dd>
-        </div>
       </dl>
     </section>
   );

@@ -31,24 +31,28 @@ export const media = {
     alt: "Momento de adoração na Casa de Paz.",
   },
   church: {
-    src: "/images/church.jpg",
-    alt: "Comunidade atenta à Palavra durante o culto.",
+    src: "/images/church.png",
+    alt: "Celebração da Casa de Paz com a comunidade reunida.",
   },
   worship: {
     src: "/images/worship.jpg",
     alt: "Louvor ao vivo na celebração da casa.",
   },
   music: {
-    src: "/images/music.jpg",
-    alt: "Músico tocando violão no culto.",
+    src: "/images/prayer.png",
+    alt: "Palavra e adoração na Casa de Paz.",
   },
   prayer: {
     src: "/images/prayer.jpg",
     alt: "Tempo de oração e comunhão.",
   },
-  band: {
-    src: "/images/band.jpg",
-    alt: "Ministério de louvor da Casa de Paz.",
+  quemSomos: {
+    src: "/images/quem-somos-placeholder.svg",
+    alt: "Foto da comunidade — em breve.",
+  },
+  projeto: {
+    src: "/images/projeto-placeholder.svg",
+    alt: "Foto do projeto em movimento — em breve.",
   },
 } as const;
 
@@ -70,50 +74,70 @@ export const nav = [
   { id: "igreja", label: "A igreja" },
   { id: "instituto", label: "Instituto" },
   { id: "programacao", label: "Programação" },
-  { id: "pastor", label: "Fale com o pastor" },
+  { id: "ofertas", label: "Ofertas" },
+  { id: "nossa-casa", label: "Nossa Casa" },
 ] as const;
 
-export const values = [
+export const pillars = [
   {
-    title: "Palavra",
-    text: "A Escritura no centro: ensinamos, celebramos e decidimos a partir do evangelho de Jesus.",
+    number: "01",
+    title: "Adorar a Deus",
   },
   {
-    title: "Casa",
-    text: "Hospitalidade de verdade. Aqui há mesa, nome e tempo para quem chega — e para quem permanece.",
+    number: "02",
+    title: "Amar nossas famílias",
   },
   {
-    title: "Paz",
-    text: "Não é slogan. É o fruto de uma vida reconciliada com Deus, uns com os outros e com o território.",
-  },
-  {
-    title: "Serviço",
-    text: "Fé que desce à rua. A igreja e o instituto caminham juntos para cuidar de pessoas reais.",
+    number: "03",
+    title: "Servir a cidade",
   },
 ] as const;
+
+export const quemSomos = {
+  title: "Quem somos",
+  paragraphs: [
+    "A Igreja Casa de Paz nasceu para ser exatamente o que o nome diz: uma casa.",
+    "Uma casa onde pessoas são recebidas como estão, encontram uma família e têm a oportunidade de conhecer Jesus de verdade.",
+    "Acreditamos em uma igreja que vai além do culto de domingo. Uma igreja presente na vida das pessoas, que acolhe, ensina, cuida, serve e caminha junto.",
+    "Somos uma comunidade formada por pessoas comuns, com histórias, lutas, sonhos e recomeços. Não buscamos parecer perfeitos. Buscamos seguir Jesus e nos tornar cada dia mais parecidos com Ele.",
+    "Queremos que crianças cresçam conhecendo a Cristo, que famílias sejam fortalecidas, que jovens encontrem propósito e que cada pessoa descubra que existe um lugar para ela no Reino de Deus.",
+    "Por isso, nossa igreja também está presente na comunidade, servindo através de projetos sociais, educação, esporte e ações que alcançam crianças, adolescentes e famílias.",
+  ],
+  motto: "Todo problema é uma oportunidade de tornar o nome de Jesus famoso",
+} as const;
 
 export const fronts = [
   {
     kicker: "01",
-    title: "Acolhimento",
-    text: "Escuta, oração e encaminhamento. Um primeiro chão para quem precisa de cuidado, orientação ou simplesmente ser recebido.",
+    title: "Evangelho",
   },
   {
     kicker: "02",
-    title: "Infância e juventude",
-    text: "Projetos para a prática de esportes e aprendizado - Volei, Kickboxing, Ballet e Inglês.",
+    title: "Educação",
   },
   {
     kicker: "03",
-    title: "Igreja de segunda",
-    text: "Ações sociais e atendimento humanizado aos necessitados.",
+    title: "Empreendedorismo",
   },
   {
     kicker: "04",
-    title: "Celebração",
-    text: "Louvor a Deus e palavra viva. Venha louvar conosco aos domingos",
+    title: "Esportes",
   },
 ] as const;
+
+export const offerings = {
+  title: "Ofertas",
+  text: "Sua oferta sustenta a missão da Casa de Paz: adoração, cuidado pastoral e serviço à cidade. Em breve o PIX oficial estará disponível neste QR Code.",
+  email: "ofertas@igrejacasadepaz.com.br",
+  qr: "/images/qr-ofertas.svg",
+} as const;
+
+export const ourHouse = {
+  title: "Nossa Casa",
+  text: "Estamos em um tempo especial: a compra do prédio onde a Casa de Paz se reúne. Aqui contaremos essa história e como você pode participar. Em breve o PIX oficial estará disponível neste QR Code.",
+  email: "nossacasa@igrejacasadepaz.com.br",
+  qr: "/images/qr-nossa-casa.svg",
+} as const;
 
 export type ScheduleItem = {
   when: string;
