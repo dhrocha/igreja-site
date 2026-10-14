@@ -62,6 +62,10 @@ export const pastor = {
   role: "Pastor e presidente",
 } as const;
 
+/** URL do Apps Script que envia o formulário pastoral por Gmail. */
+export const pastorFormUrl =
+  (import.meta.env.VITE_PASTOR_FORM_URL as string | undefined)?.trim() || "";
+
 export const institute = {
   name: "Instituto Casa de Paz",
   instagram: {

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
-import { church, pastor, pastorTopics } from '../content'
+import { church, pastor, pastorFormUrl, pastorTopics } from '../content'
 
-type Status = 'idle' | 'sent'
+type Status = 'idle' | 'sending' | 'sent'
 
 const initial = {
   name: '',
@@ -10,6 +10,7 @@ const initial = {
   topic: 'oracao',
   message: '',
   privacy: false,
+  website: '',
 }
 
 export function Pastor() {
@@ -21,7 +22,7 @@ export function Pastor() {
     setForm((current) => ({ ...current, [key]: value }))
   }
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError('')
 
@@ -35,23 +36,70 @@ export function Pastor() {
       return
     }
 
-    const topic = pastorTopics.find((item) => item.value === form.topic)?.label ?? form.topic
-    const body = [
-      `Nome: ${form.name}`,
-      form.email ? `E-mail: ${form.email}` : '',
-      form.phone ? `Telefone: ${form.phone}` : '',
-      `Assunto: ${topic}`,
-      '',
-      form.message,
-    ]
-      .filter(Boolean)
-      .join('\n')
+    const topic =
+      pastorTopics.find((item) => item.value === form.topic)?.label ?? form.topic
 
-    void navigator.clipboard?.writeText(body).catch(() => undefined)
-    const mailto = `mailto:?subject=${encodeURIComponent(`Fale com o pastor — ${topic}`)}&body=${encodeURIComponent(body)}`
-    window.location.href = mailto
-    setStatus('sent')
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      topic,
+      message: form.message.trim(),
+      website: form.website,
+    }
+
+    if (!pastorFormUrl) {
+      const body = [
+        `Nome: ${payload.name}`,
+        payload.email ? `E-mail: ${payload.email}` : '',
+        payload.phone ? `Telefone: ${payload.phone}` : '',
+        `Assunto: ${topic}`,
+        '',
+        payload.message,
+      ]
+        .filter(Boolean)
+        .join('\n')
+
+      void navigator.clipboard?.writeText(body).catch(() => undefined)
+      const mailto = `mailto:?subject=${encodeURIComponent(`Fale com o pastor — ${topic}`)}&body=${encodeURIComponent(body)}`
+      window.location.href = mailto
+      setStatus('sent')
+      return
+    }
+
+    setStatus('sending')
+
+    try {
+      const response = await fetch(pastorFormUrl, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+      })
+
+      const raw = await response.text()
+      let data: { ok?: boolean; error?: string } = {}
+      try {
+        data = JSON.parse(raw) as { ok?: boolean; error?: string }
+      } catch {
+        // Apps Script às vezes devolve HTML em erro de permissão
+      }
+
+      if (!response.ok || data.ok === false) {
+        throw new Error(data.error || 'Não foi possível enviar agora.')
+      }
+
+      setForm(initial)
+      setStatus('sent')
+    } catch {
+      setStatus('idle')
+      setError(
+        'Não foi possível enviar a mensagem. Tente de novo em instantes ou fale pelo Instagram.',
+      )
+    }
   }
+
+  const sentViaScript = Boolean(pastorFormUrl)
 
   return (
     <section className="section" id="pastor">
@@ -77,10 +125,11 @@ export function Pastor() {
 
         {status === 'sent' ? (
           <div className="form-success" role="status">
-            <h3>Pedido preparado.</h3>
+            <h3>{sentViaScript ? 'Mensagem enviada.' : 'Pedido preparado.'}</h3>
             <p>
-              Seu aplicativo de e-mail deve ter aberto com a mensagem. Se
-              preferir, envie também pelo Instagram da casa.
+              {sentViaScript
+                ? 'Recebemos seu pedido. A equipe pastoral retorna com atenção e sigilo.'
+                : 'Seu aplicativo de e-mail deve ter aberto com a mensagem. Se preferir, envie também pelo Instagram da casa.'}
             </p>
             <div className="hero-actions">
               <a className="btn btn-solid" href={church.instagram.url} target="_blank" rel="noreferrer">
@@ -93,6 +142,17 @@ export function Pastor() {
           </div>
         ) : (
           <form className="pastor-form" onSubmit={onSubmit} noValidate>
+            <label className="hp" aria-hidden="true">
+              Site
+              <input
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={(event) => update('website', event.target.value)}
+              />
+            </label>
+
             <label>
               Nome
               <input
@@ -164,8 +224,8 @@ export function Pastor() {
 
             {error ? <p className="form-error">{error}</p> : null}
 
-            <button className="btn btn-solid" type="submit">
-              Enviar ao pastor
+            <button className="btn btn-solid" type="submit" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Enviando…' : 'Enviar ao pastor'}
             </button>
           </form>
         )}

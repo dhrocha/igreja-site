@@ -859,6 +859,19 @@ textarea {
   font-weight: 600;
 }
 
+.pastor-form .hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.pastor-form .btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
 .pastor-form input,
 .pastor-form select,
 .pastor-form textarea {
