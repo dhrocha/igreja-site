@@ -2,10 +2,10 @@ import { offerings } from '../content'
 
 export function Offerings() {
   return (
-    <section className="section section-alt" id="ofertas">
+    <section className="section" id="ofertas">
       <div className="give-grid">
         <div className="section-head">
-          <p className="kicker">04 — Ofertas</p>
+          <p className="kicker">05 — Ofertas</p>
           <h2>{offerings.title}</h2>
           <p>{offerings.text}</p>
           <p className="give-email">{offerings.email}</p>

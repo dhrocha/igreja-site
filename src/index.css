@@ -25,6 +25,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--fg);
   background: var(--bg);
   font-family: var(--sans);
@@ -155,9 +156,9 @@ textarea {
   z-index: 12;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   height: var(--header);
-  padding: 0 1.4rem;
+  padding: 0 1rem;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
@@ -185,14 +186,17 @@ textarea {
 
 .nav {
   display: none;
-  gap: 1.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.85rem 1.1rem;
   margin-left: auto;
 }
 
 .nav a {
   color: var(--fg-soft);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav a.is-active {
@@ -233,9 +237,24 @@ textarea {
   inset: var(--header) 0 0;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: 1.6rem;
+  align-items: stretch;
+  gap: 0.35rem;
+  padding: 1.2rem 1rem 1.6rem;
   background: var(--bg);
+  overflow-y: auto;
+}
+
+.mobile-nav a {
+  padding: 0.85rem 0.4rem;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mobile-nav .btn {
+  margin-top: 1rem;
+  border-bottom: 0;
 }
 
 .mobile-nav[hidden] {
@@ -246,7 +265,7 @@ textarea {
   position: relative;
   display: grid;
   min-height: calc(100svh - var(--header));
-  padding: 2.2rem 1.4rem 2.6rem;
+  padding: 1.2rem 1rem 1.8rem;
   overflow: hidden;
 }
 
@@ -318,6 +337,11 @@ textarea {
   margin-top: 1.8rem;
 }
 
+.hero-actions .btn {
+  flex: 1 1 auto;
+  min-width: min(100%, 11rem);
+}
+
 .hero .btn-solid {
   background: var(--fg);
   color: var(--bg);
@@ -359,7 +383,7 @@ textarea {
 .gallery {
   display: grid;
   gap: 0.7rem;
-  width: min(var(--max), calc(100% - 2.8rem));
+  width: min(var(--max), calc(100% - 2rem));
   margin: 0 auto 1rem;
 }
 
@@ -406,8 +430,7 @@ textarea {
 }
 
 .callout-photo {
-  width: 100%;
-  max-width: 180px;
+  width: min(100%, 180px);
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 0.85rem;
@@ -415,32 +438,38 @@ textarea {
 }
 
 .section {
-  width: min(var(--max), calc(100% - 2.8rem));
+  width: min(var(--max), calc(100% - 2rem));
   margin: 0 auto;
-  padding: 5.5rem 0;
+  padding: 3.75rem 0;
 }
 
 .section-alt {
   width: 100%;
-  padding-left: max(1.4rem, calc((100% - var(--max)) / 2));
-  padding-right: max(1.4rem, calc((100% - var(--max)) / 2));
+  padding-left: max(1rem, calc((100% - var(--max)) / 2));
+  padding-right: max(1rem, calc((100% - var(--max)) / 2));
   background: var(--bg-2);
 }
 
 .section-head {
   max-width: 40rem;
-  margin-bottom: 2.6rem;
+  margin: 0 auto 2.2rem;
+  text-align: center;
 }
 
 .section-head h2,
 .pastor-grid h2 {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-size: clamp(2rem, 5vw, 3.6rem);
 }
 
 .section-head p:last-child,
 .pastor-grid .lede {
   margin-top: 1rem;
   color: var(--fg-soft);
+}
+
+.give-grid .section-head {
+  margin-inline: 0;
+  text-align: left;
 }
 
 .value-grid,
@@ -463,6 +492,14 @@ textarea {
 
 .front-card {
   background: var(--bg-card);
+}
+
+.value-card,
+.front-card {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .value-card h3,
@@ -490,63 +527,174 @@ textarea {
 .value-card h3 {
   margin-bottom: 0;
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
   letter-spacing: 0.04em;
 }
 
 .front-card h3 {
   margin-bottom: 0;
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
   letter-spacing: 0.04em;
 }
 
-.split {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2.2rem;
+.quem-somos {
+  max-width: 42rem;
+  margin: 0 auto 2.4rem;
+  text-align: left;
 }
 
-.quem-somos-panel p + p {
+.quem-somos p {
+  color: var(--fg-soft);
+}
+
+.quem-somos p + p {
   margin-top: 0.9rem;
 }
 
-.quem-somos-panel .motto {
-  margin-top: 1.6rem;
-  padding-top: 1.2rem;
+.quem-somos .motto {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   color: var(--fg);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  font-size: 1.05rem;
-  line-height: 1.35;
+  font-size: clamp(1.25rem, 3.4vw, 1.85rem);
+  line-height: 1.3;
+  text-align: center;
 }
 
-.split-photo {
-  margin: 0;
-  min-height: 320px;
-  overflow: hidden;
-  border-radius: 1.15rem;
+.vision-block {
+  margin-top: 2.8rem;
+}
+
+.vision-block .section-head {
+  margin-bottom: 1.6rem;
+}
+
+.youtube-top {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 1.4rem;
+  justify-items: center;
+}
+
+.youtube-head {
+  margin-bottom: 0;
+}
+
+.youtube-head .btn {
+  margin-top: 1.4rem;
+}
+
+.youtube-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.youtube-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.youtube-nav {
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   background: var(--bg-card);
+  color: var(--fg);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.split-photo img {
+.youtube-nav:hover {
+  border-color: color-mix(in srgb, var(--fg) 40%, transparent);
+}
+
+.youtube-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 85%);
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.youtube-card {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.youtube-thumb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: var(--bg-card);
+  aspect-ratio: 16 / 9;
+}
+
+.youtube-thumb img {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 320px;
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.youtube-thumb:hover img {
+  transform: scale(1.03);
+}
+
+.youtube-play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 72%);
+  color: #fff;
+  font-size: 0.85rem;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.youtube-card h3 {
+  margin-top: 0.85rem;
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.youtube-card h3 a {
+  text-decoration: none;
+}
+
+.youtube-card h3 a:hover {
+  text-decoration: underline;
 }
 
 .give-grid {
   display: grid;
   gap: 2rem;
   align-items: center;
+  justify-items: center;
 }
 
 .give-grid .section-head {
   margin-bottom: 0;
+  width: 100%;
+  max-width: 36rem;
 }
 
 .give-email {
@@ -557,7 +705,8 @@ textarea {
 
 .qr-card {
   margin: 0;
-  justify-self: start;
+  justify-self: center;
+  width: min(100%, 280px);
   padding: 1.2rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -568,6 +717,7 @@ textarea {
 .qr-card img {
   display: block;
   width: min(220px, 100%);
+  margin-inline: auto;
   aspect-ratio: 1;
   border-radius: 0.5rem;
   background: #fff;
@@ -582,12 +732,14 @@ textarea {
 .callout {
   display: grid;
   gap: 1.4rem;
+  justify-items: center;
   margin-top: 2.2rem;
   padding: 1.6rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: #1f1f1f;
   color: var(--fg);
+  text-align: center;
 }
 
 .callout .kicker {
@@ -595,7 +747,7 @@ textarea {
 }
 
 .callout h3 {
-  font-size: 2rem;
+  font-size: clamp(1.55rem, 4vw, 2rem);
 }
 
 .callout p {
@@ -606,6 +758,7 @@ textarea {
 .callout-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.7rem;
   align-items: end;
 }
@@ -624,7 +777,8 @@ textarea {
   display: flex;
   gap: 0.4rem;
   width: fit-content;
-  margin-bottom: 1.4rem;
+  max-width: 100%;
+  margin: 0 auto 1.4rem;
   padding: 0.3rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -757,7 +911,7 @@ textarea {
 }
 
 .footer {
-  padding: 3.5rem 1.4rem 2rem;
+  padding: 3.5rem 1rem 2rem;
   background: #1f1f1f;
   color: var(--fg);
 }
@@ -765,8 +919,10 @@ textarea {
 .footer-top {
   display: grid;
   gap: 1rem;
+  justify-items: center;
   max-width: var(--max);
   margin: 0 auto 2.4rem;
+  text-align: center;
 }
 
 .footer-top p {
@@ -781,10 +937,12 @@ textarea {
 .footer-grid {
   display: grid;
   gap: 1.6rem;
+  justify-items: center;
   width: min(var(--max), 100%);
   margin: 0 auto;
   padding-top: 1.6rem;
   border-top: 1px solid var(--line);
+  text-align: center;
 }
 
 .footer h2 {
@@ -806,6 +964,7 @@ textarea {
   margin: 2.4rem auto 0;
   color: var(--muted);
   font-size: 0.85rem;
+  text-align: center;
 }
 
 @media (min-width: 800px) {
@@ -813,9 +972,18 @@ textarea {
     padding: 0 2rem;
   }
 
+  .nav {
+    flex-wrap: nowrap;
+    gap: 1.35rem;
+  }
+
   .nav,
   .header-cta {
     display: flex;
+  }
+
+  .nav a {
+    font-size: 0.92rem;
   }
 
   .menu-toggle,
@@ -823,46 +991,65 @@ textarea {
     display: none;
   }
 
-  .hero {
-    grid-template-rows: 1fr auto;
-    padding: 2.4rem 2rem 2.8rem;
+  .section {
+    width: min(var(--max), calc(100% - 2.8rem));
+    padding: 5.5rem 0;
   }
 
-  .hero-meta {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+  .section-alt {
+    width: 100%;
+    padding-left: max(1.4rem, calc((100% - var(--max)) / 2));
+    padding-right: max(1.4rem, calc((100% - var(--max)) / 2));
   }
 
-  .value-grid,
-  .front-grid,
-  .split,
-  .pastor-grid,
-  .footer-grid,
-  .give-grid {
+  .section-head {
+    max-width: none;
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .section-head > p:not(.kicker) {
+    max-width: 48rem;
+  }
+
+  .give-grid .section-head {
+    max-width: none;
+  }
+
+  .give-grid .section-head > p:not(.kicker):not(.give-email) {
+    max-width: 36rem;
+  }
+
+  .quem-somos {
+    display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 0.9rem 2.2rem;
+    max-width: none;
+    margin-inline: 0;
+    margin-bottom: 2.8rem;
   }
 
-  .value-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
+  .quem-somos p + p {
+    margin-top: 0;
   }
 
-  .qr-card {
-    justify-self: end;
+  .quem-somos .motto {
+    grid-column: 1 / -1;
+    margin-top: 1.2rem;
+    text-align: center;
   }
 
-  .form-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .schedule-list li {
-    grid-template-columns: 11rem 1fr;
-    gap: 1.5rem;
-    align-items: start;
+  .value-card,
+  .front-card {
+    justify-items: start;
+    text-align: left;
   }
 
   .gallery {
+    width: min(var(--max), calc(100% - 2.8rem));
     grid-template-columns: 1.6fr 1fr;
     grid-template-rows: 1fr 1fr;
+    height: min(70vh, 520px);
     min-height: 440px;
   }
 
@@ -876,10 +1063,109 @@ textarea {
     min-height: 0;
   }
 
+  .hero {
+    grid-template-rows: 1fr auto;
+    padding: 2.4rem 2rem 2.8rem;
+  }
+
+  .hero-actions .btn {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .value-grid,
+  .front-grid,
+  .pastor-grid,
+  .footer-grid,
+  .give-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .youtube-top {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    justify-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .youtube-head {
+    max-width: none;
+    text-align: left;
+    margin-inline: 0;
+  }
+
+  .youtube-head > p:not(.kicker) {
+    max-width: 48rem;
+  }
+
+  .youtube-controls {
+    justify-content: flex-end;
+    margin-bottom: 0.35rem;
+  }
+
+  .youtube-track {
+    grid-auto-columns: minmax(280px, calc((100% - 2rem) / 3));
+  }
+
+  .youtube-card h3 {
+    text-align: left;
+  }
+
+  .value-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .give-grid {
+    justify-items: stretch;
+  }
+
+  .qr-card {
+    justify-self: end;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tabs {
+    margin-inline: 0;
+  }
+
+  .schedule-list li {
+    grid-template-columns: 11rem 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
   .callout {
     grid-template-columns: 180px 1.4fr 1fr;
+    justify-items: stretch;
     align-items: end;
     padding: 2.2rem;
+    text-align: left;
+  }
+
+  .callout-actions {
+    justify-content: flex-end;
+  }
+
+  .footer {
+    padding: 3.5rem 1.4rem 2rem;
+  }
+
+  .footer-top,
+  .footer-grid {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .footer-note {
+    text-align: left;
   }
 }
 
@@ -899,6 +1185,12 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   html {
+    scroll-behavior: auto;
+  }
+
+  .youtube-thumb img,
+  .youtube-track {
+    transition: none;
     scroll-behavior: auto;
   }
 }

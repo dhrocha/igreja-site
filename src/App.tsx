@@ -4,6 +4,7 @@ import { Hero } from './components/Hero'
 import { Church } from './components/Church'
 import { Institute } from './components/Institute'
 import { Schedule } from './components/Schedule'
+import { Youtube } from './components/Youtube'
 import { Offerings } from './components/Offerings'
 import { OurHouse } from './components/OurHouse'
 import { Pastor } from './components/Pastor'
@@ -22,6 +23,7 @@ export default function App() {
         <Church />
         <Institute />
         <Schedule />
+        <Youtube />
         <Offerings />
         <OurHouse />
         <Pastor />

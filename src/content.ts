@@ -51,8 +51,8 @@ export const media = {
     alt: "Foto da comunidade — em breve.",
   },
   projeto: {
-    src: "/images/projeto-placeholder.svg",
-    alt: "Foto do projeto em movimento — em breve.",
+    src: "/images/absai.png",
+    alt: "Projeto do Instituto Casa de Paz em ação.",
   },
 } as const;
 
@@ -74,6 +74,7 @@ export const nav = [
   { id: "igreja", label: "A igreja" },
   { id: "instituto", label: "Instituto" },
   { id: "programacao", label: "Programação" },
+  { id: "youtube", label: "YouTube" },
   { id: "ofertas", label: "Ofertas" },
   { id: "nossa-casa", label: "Nossa Casa" },
 ] as const;
@@ -124,6 +125,37 @@ export const fronts = [
     title: "Esportes",
   },
 ] as const;
+
+export const youtube = {
+  title: "Mensagens e celebrações",
+  text: "Assista às mensagens, celebrações e conteúdos da Casa de Paz. Confira os vídeos recentes e acompanhe o canal.",
+  videos: [
+    {
+      id: "OHaFdqImrrI",
+      title: "Bem-vindos à Comunidade Cristã Casa de Paz",
+    },
+    {
+      id: "neJzve_8DLw",
+      title: "Não deixe o seu ego te dominar | Pr. Ramon Elias",
+    },
+    {
+      id: "VzrqmAqokEk",
+      title: "Morto em razão de um homem | Pr. Ramon Elias",
+    },
+    {
+      id: "j6eoflwNWkY",
+      title: "Vem de Deus ou dos homens? | Pr. Ramon Elias",
+    },
+    {
+      id: "_u6DhUn1PhY",
+      title: "O dinheiro da igreja promove a fama de Deus | Pr. Ramon Elias",
+    },
+    {
+      id: "yyLQc_b9Qx8",
+      title: "Vem de Deus ou dos homens? | Pr. Ramon Elias",
+    },
+  ],
+} as const;
 
 export const offerings = {
   title: "Ofertas",
